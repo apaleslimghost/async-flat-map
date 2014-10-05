@@ -52,6 +52,31 @@ describe('async-flat-map', function() {
 			done(e);
 		});
 	});
+	
+	it('should keep results in order', function(done) {
+		var that = this;
+
+		asyncFlatMap(function(x, cb) {
+			that.timer.setTimeout(function() {
+				cb(null, [x, x * 2]);
+			}, 400 - x*100); // Matthew 20:16
+		}, [1,2,3], function(e, ys) {
+			expect(ys).to.eql([1,2,2,4,3,6]);
+			done(e);
+		});
+
+		this.timer.wind(300);
+	});
+
+	it('should only call callback once on multiple errors', function(done) {
+		var e = {};
+		asyncFlatMap(function(x, cb) {
+			cb(e);
+		}, [1,2,3], function(err) {
+			expect(e).to.be(e);
+			done();
+		});
+	});
 
 });
 
