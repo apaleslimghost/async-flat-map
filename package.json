@@ -4,7 +4,7 @@
   "description": "∀ a,b. [a] → (a → (Error → [b] → ()) → ()) → (Error → [b] → ())",
   "main": "index.js",
   "scripts": {
-    "test": "make test"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -22,5 +22,14 @@
   "bugs": {
     "url": "https://github.com/quarterto/async-flat-map/issues"
   },
-  "homepage": "https://github.com/quarterto/async-flat-map"
+  "homepage": "https://github.com/quarterto/async-flat-map",
+  "dependencies": {
+    "async-early-error": "^1.2.0",
+    "curry": "^1.2.0"
+  },
+  "devDependencies": {
+    "expect.js": "^0.3.1",
+    "mocha": "^1.21.4",
+    "timer-shim": "^0.3.0"
+  }
 }
