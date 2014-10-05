@@ -43,5 +43,15 @@ describe('async-flat-map', function() {
 
 		this.timer.wind(100); // would take 300ms in series
 	});
+
+	it('should be curried', function(done) {
+		asyncFlatMap(function(x, cb) {
+			cb(null, [x, x * 2]);
+		})([1,2,3])(function(e, ys) {
+			expect(ys).to.eql([1,2,2,4,3,6]);
+			done(e);
+		});
+	});
+
 });
 
