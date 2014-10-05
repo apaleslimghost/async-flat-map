@@ -7,7 +7,9 @@ async-flat-map
 Like `flatMap`, but asynchronous.
 
 ## API
-#### ∀ a, b. [a] → (a → (Error → [b] → ()) → ()) → (Error → [b] → ())
+#### ∀ a, b. (a → (Error → [b] → ()) → ()) → [a] → (Error → [b] → ())
+
+Exits early on error. Collects and concats array results. Runs in parallel. Maintains result order.
 
 ## Licence
 MIT
